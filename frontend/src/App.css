@@ -1,0 +1,294 @@
+/* App.css
+   Application shell: header, node palette and canvas.
+   -------------------------------------------------- */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header ---------------------------------------- */
+
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-shrink: 0;
+  padding: 0 16px;
+  height: 56px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-raised);
+}
+
+.app__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app__logo {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--brand);
+  color: var(--text-inverted);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.app__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.app__subtitle {
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.app__body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Buttons --------------------------------------- */
+
+.button {
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
+}
+
+.button--primary {
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.button--primary:hover:not(:disabled) {
+  background: var(--brand-hover);
+}
+
+.button--primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Palette --------------------------------------- */
+
+.palette {
+  flex-shrink: 0;
+  width: 208px;
+  padding: 16px 12px;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  background: var(--surface-raised);
+}
+
+.palette__heading {
+  padding: 0 4px;
+  margin-bottom: 12px;
+}
+
+.palette__title {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.palette__hint {
+  margin: 4px 0 0;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.palette__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.palette-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  cursor: grab;
+  user-select: none;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+}
+
+.palette-item:hover {
+  border-color: var(--node-accent);
+  background: var(--surface-hover);
+  transform: translateY(-1px);
+}
+
+.palette-item:active {
+  transform: translateY(0);
+}
+
+.palette-item__icon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--node-accent) 14%, transparent);
+  color: var(--node-accent);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.palette-item__label {
+  font-size: 11px;
+  font-weight: 550;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+/* Canvas ---------------------------------------- */
+
+.canvas {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.canvas__empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.canvas__empty-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.canvas__empty-text {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* React Flow overrides -------------------------- */
+
+.react-flow__background {
+  background: var(--surface-canvas);
+}
+
+.react-flow__background-pattern circle {
+  fill: var(--border-strong);
+}
+
+.react-flow__edge-path {
+  stroke: var(--border-strong);
+  stroke-width: 1.8;
+}
+
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: var(--brand);
+}
+
+.react-flow__arrowhead polyline,
+.react-flow__arrowhead path {
+  stroke: var(--border-strong);
+  fill: var(--border-strong);
+}
+
+.react-flow__connectionline .react-flow__edge-path {
+  stroke: var(--brand);
+  stroke-width: 2;
+}
+
+.react-flow__controls {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.react-flow__controls-button {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-raised);
+  fill: var(--text-secondary);
+}
+
+.react-flow__controls-button:hover {
+  background: var(--surface-hover);
+}
+
+.react-flow__minimap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.react-flow__minimap-mask {
+  fill: color-mix(in srgb, var(--surface-canvas) 70%, transparent);
+}
+
+.react-flow__node {
+  font-family: var(--font-sans);
+}
+
+/* Narrow screens -------------------------------- */
+
+@media (max-width: 720px) {
+  .app__body {
+    flex-direction: column;
+  }
+
+  .palette {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .palette__grid {
+    grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+  }
+
+  .app__subtitle {
+    display: none;
+  }
+}
